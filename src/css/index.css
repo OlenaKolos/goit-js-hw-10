@@ -1,0 +1,35 @@
+.link-btn-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+    display: flex;
+    justify-content: center;
+    column-gap: 120px;
+}
+
+.task-link-btn {
+    width: 200px;
+    display: block;
+    text-align: center;
+    border-radius: 15px;
+    padding: 10px;
+    border: 2px solid black;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.link-btn-container:first-child {
+    margin-right: auto;
+}
+
+.link-btn-container:nth-child(2) {
+    margin-right: auto;
+}
+
+.task-link-btn:hover,
+.task-link-btn:focus {
+    color: white;
+    background-color: #4942E4;
+}
