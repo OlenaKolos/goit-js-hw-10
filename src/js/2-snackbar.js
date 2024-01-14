@@ -1,5 +1,3 @@
-'use strict';
-
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -26,13 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       promise.then(
         delay =>
-          showSnackbar(
-            'Success',
-            `✅ Fulfilled promise in ${delay}ms`,
-            '#59A10D'
-          ),
+          showSnackbar('', `✅ Fulfilled promise in ${delay}ms`, '#59A10D'),
         delay =>
-          showSnackbar('Error', `❌ Rejected promise in ${delay}ms`, '#EF4040')
+          showSnackbar('', `❌ Rejected promise in ${delay}ms`, '#EF4040')
       );
     });
   }
