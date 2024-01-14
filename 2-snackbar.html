@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Montserrat:wght@400;500&family=Poppins:ital,wght@1,200;1,300;1,400;1,500;1,600;1,800&display=swap"
+        rel="stylesheet" />
+    
+    <title>The snackbar</title>
+  <script type="module" crossorigin src="/goit-js-hw-10/commonHelpers2.js"></script>
+  <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/styles-997adf7e.js">
+  <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/vendor-651d7991.js">
+  <link rel="stylesheet" href="/goit-js-hw-10/assets/styles-a9cbe08b.css">
+  <link rel="stylesheet" href="/goit-js-hw-10/assets/vendor-80d0dc0f.css">
+</head>
+
+<body>
+    <div class="container">
+        <form class="form">
+            <label class="form-item">
+                Delay (ms)
+                <input class="form-input" type="number" name="delay" required />
+            </label>
+
+            <fieldset class="field-area">
+                <legend>State</legend>
+                <label>
+                    <input type="radio" name="state" value="fulfilled" required />
+                    Fulfilled
+                </label>
+                <label>
+                    <input type="radio" name="state" value="rejected" required />
+                    Rejected
+                </label>
+            </fieldset>
+
+            <button class="field-btn" type="submit">Create notification</button>
+        </form>
+    </div>
+    <a class="return-link" href="./index.html">Press to go back</a>
+    
+</body>
+
+</html>
