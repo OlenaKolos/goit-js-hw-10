@@ -1,7 +1,5 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
 
 const options = {
   enableTime: true,
@@ -30,7 +28,7 @@ function handleDateSelection(selectedDates) {
 }
 
 function startTimer() {
-  const userSelectedDate = flatpickrInstance.selectedDates[0];
+  let userSelectedDate = flatpickrInstance.selectedDates[0];
   const currentTime = Date.now();
 
   if (!userSelectedDate || userSelectedDate < currentTime) {
@@ -38,7 +36,7 @@ function startTimer() {
     return;
   }
 
-  const timeDifference = userSelectedDate - currentTime;
+  let timeDifference = userSelectedDate - currentTime;
   let timerInterval;
 
   function updateTimerDisplay() {
@@ -53,9 +51,15 @@ function startTimer() {
       clearInterval(timerInterval);
       showSuccessMessage('Countdown timer has reached the end date.');
       disableStartButton();
+      return;
     }
 
     timeDifference -= 1000;
+
+    if (timeDifference <= 0) {
+      clearInterval(timerInterval);
+      disableStartButton();
+    }
   }
 
   updateTimerDisplay();
@@ -123,7 +127,7 @@ function addLeadingZero(value) {
 // const flatpickrInstance = flatpickr('#datetime-picker', options);
 
 // document.querySelector('[data-start]').addEventListener('click', startTimer);
-// document.addEventListener('DOMContentLoaded', disableStartButton);
+// disableStartButton();
 
 // function handleDateSelection(selectedDates) {
 //   const userSelectedDate = selectedDates[0];
@@ -137,11 +141,16 @@ function addLeadingZero(value) {
 // }
 
 // function startTimer() {
-//   const selectedDate = flatpickrInstance.selectedDates[0];
+//   const userSelectedDate = flatpickrInstance.selectedDates[0];
 //   const currentTime = Date.now();
-//   let timeDifference = selectedDate - currentTime;
 
-//   const timerInterval = setInterval(updateTimerDisplay, 1000);
+//   if (!userSelectedDate || userSelectedDate < currentTime) {
+//     showErrorMessage('Please choose a valid future date');
+//     return;
+//   }
+
+//   const timeDifference = userSelectedDate - currentTime;
+//   let timerInterval;
 
 //   function updateTimerDisplay() {
 //     const { days, hours, minutes, seconds } = convertMs(timeDifference);
@@ -154,10 +163,14 @@ function addLeadingZero(value) {
 //     if (timeDifference <= 0) {
 //       clearInterval(timerInterval);
 //       showSuccessMessage('Countdown timer has reached the end date.');
+//       disableStartButton();
 //     }
 
 //     timeDifference -= 1000;
 //   }
+
+//   updateTimerDisplay();
+//   timerInterval = setInterval(updateTimerDisplay, 1000);
 // }
 
 // function disableStartButton() {
@@ -201,11 +214,9 @@ function addLeadingZero(value) {
 // }
 
 // function updateElement(selector, value) {
-//   document.querySelector(selector).textContent =
-//     value >= 0 ? addLeadingZero(value) : '00';
+//   document.querySelector(selector).textContent = addLeadingZero(value);
 // }
 
 // function addLeadingZero(value) {
 //   return value < 10 ? `0${value}` : value;
 // }
-

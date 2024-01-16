@@ -5,43 +5,81 @@ const form = document.querySelector('.form');
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  const delay = form.elements.delay.value;
+  const delay = parseInt(form.elements.delay.value, 10);
   const state = form.elements.state.value;
-  makePromise({ value: delay, delay: delay, state: state })
-    .then(value =>
-      showMessage('izi-check', '#82C43C', `✅ Fulfilled promise in ${delay}ms`)
+  makePromise({ delay, state })
+    .then(() =>
+      showMessage('success', '#82C43C', `✅ Fulfilled promise in ${delay}ms`)
     )
-    .catch(error =>
-      showMessage(
-        'izi-close-icon',
-        '#FC5A5A',
-        `❌ Rejected promise in ${delay}ms`
-      )
+    .catch(() =>
+      showMessage('error', '#FC5A5A', `❌ Rejected promise in ${delay}ms`)
     );
 });
 
-const makePromise = ({ value, delay, state }) => {
+const makePromise = ({ delay, state }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === 'fulfilled') {
-        resolve(value);
+        resolve();
       } else {
-        reject(value);
+        reject();
       }
     }, delay);
   });
 };
 
-const showMessage = (icon, color, msg) => {
-  iziToast.show({
-    position: 'topCenter',
+const showMessage = (type, color, msg) => {
+  iziToast[type]({
+    title: 'Notification',
+    message: msg,
     iconColor: '#FAFAFB',
-    icon: icon,
-    messageColor: '#FAFAFB',
-    messageSize: '16px',
     backgroundColor: color,
     close: false,
     closeOnClick: true,
-    message: msg,
   });
 };
+
+// const form = document.querySelector('.form');
+
+// form.addEventListener('submit', event => {
+//   event.preventDefault();
+//   const delay = form.elements.delay.value;
+//   const state = form.elements.state.value;
+//   makePromise({ value: delay, delay: delay, state: state })
+//     .then(value =>
+//       showMessage('izi-check', '#82C43C', `✅ Fulfilled promise in ${delay}ms`)
+//     )
+//     .catch(error =>
+//       showMessage(
+//         'izi-close-icon',
+//         '#FC5A5A',
+//         `❌ Rejected promise in ${delay}ms`
+//       )
+//     );
+// });
+
+// const makePromise = ({ value, delay, state }) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (state === 'fulfilled') {
+//         resolve(value);
+//       } else {
+//         reject(value);
+//       }
+//     }, delay);
+//   });
+// };
+
+// const showMessage = (icon, color, msg) => {
+//   iziToast.show({
+//     position: 'topCenter',
+//     iconColor: '#FAFAFB',
+//     icon: icon,
+//     messageColor: '#FAFAFB',
+//     messageSize: '16px',
+//     backgroundColor: color,
+//     close: false,
+//     closeOnClick: true,
+//     message: msg,
+//   });
+// };
